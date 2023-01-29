@@ -1,0 +1,15 @@
+{
+    "name": "sparkbridge-core",
+    "author": {
+        "name": "sbaoor",
+        "url": "https://github.com/sbaoor-fly"
+    },
+    "version": "1.0.0",
+    "dependencies": {
+        "dayjs": "^1.11.7",
+        "oicq": "^2.3.1",
+        "winston": "^3.8.2",
+        "ws": "^8.12.0"
+    },
+    "main": "index.js"
+}
