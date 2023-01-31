@@ -1,12 +1,20 @@
-import { GroupJoinEvent, GroupMessageEvent } from "./msgBuilder";
+import { FriendMessageEvent, GroupJoinEvent, GroupLeftEvent, GroupMessageEvent } from "./msgBuilder";
 
 interface EventMap<T = any> {
     "bot.online":()=>void;
-    "bot.group.message":(e:GroupMessageEvent)=>void;
+    "bot.message.group":(e:GroupMessageEvent)=>void;
+    "bot.message.private":(e:FriendMessageEvent)=>void;
     "bot.notice.group.increase":(e:GroupJoinEvent)=>void;
+    "bot.notice.group.decrease":(e:GroupLeftEvent)=>void;
 }
 
+
 class Adapter{
+    type:string;
+    qq:number;
+    platform:string;
+    log_level:string;
+    target:string;
     /**
      * 
      * @param type 适配器种类，可选oicq/gocq
