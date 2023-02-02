@@ -1,15 +1,32 @@
 {
-    "name": "sparkbridge-core",
-    "author": {
-        "name": "sbaoor",
-        "url": "https://github.com/sbaoor-fly"
-    },
-    "version": "1.0.0",
-    "dependencies": {
-        "dayjs": "^1.11.7",
-        "oicq": "^2.3.1",
-        "winston": "^3.8.2",
-        "ws": "^8.12.0"
-    },
-    "main": "index.js"
+  "name": "sparkbridge-core",
+  "author": "sbaoor (https://github.com/sbaoor-fly)",
+  "version": "1.0.1",
+  "dependencies": {
+    "dayjs": "^1.11.7",
+    "oicq": "^2.3.1",
+    "winston": "^3.8.2",
+    "ws": "^8.12.0"
+  },
+  "main": "index.js",
+  "types": "./index.d.ts",
+  "description": "a adapter for sparkbridge",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sparkbridge/sparkbridge-core.git"
+  },
+  "keywords": [
+    "sparkbridge",
+    "bedrock",
+    "qqbot",
+    "qq"
+  ],
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/sparkbridge/sparkbridge-core/issues"
+  },
+  "homepage": "https://github.com/sparkbridge/sparkbridge-core#readme"
 }
