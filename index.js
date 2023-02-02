@@ -98,7 +98,14 @@ class Adapter {
                     if (_islib) {
                         raw = _data.toString()
                     }
-                    const msg_obj = JSON.parse(raw);
+                    let msg_obj;
+                    try{
+                        msg_obj = JSON.parse(raw);
+                    }catch(err){
+                        this.logger.error('解析消息出现错误！');
+                        console.log(err);
+                    }
+
                     switch(msg_obj.post_type){
                         case 'meta_event':
                             if(msg_obj.self_id != this.qq){
