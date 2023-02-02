@@ -18,14 +18,14 @@ class Adapter {
     target;
     pwd;
     eventEmitter = new EventEmitter();
-    constructor(type, qq, platform, log_level, target) {
+    constructor(type, qq, platform, log_level, target ,log_file_path = null) {
         this.logger = winston.createLogger({
             format: winston.format.printf((info) => {
                 return `${today.format("YYYY-MM-DD h:mm:ss")} [${info.level}] ${this.qq} | ${info.message}`
             }),
             transports: [
                 new winston.transports.Console(),
-                new winston.transports.File({ filename: `./plugins/sparkbridge/logs/${today.format("YYYY-MM-DD")}.log` })
+                new winston.transports.File({ filename: log_file_path == null ? `./plugins/sparkbridge/logs/${today.format("YYYY-MM-DD")}.log` : log_file_path })
             ]
         });
         this.type = type;
