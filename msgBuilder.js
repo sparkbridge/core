@@ -68,7 +68,9 @@ function Sender(type, e) {
 function Group_Reply(type,e,client){
     switch(type){
         case 'oicq':
-            return e.reply;
+            return (msg)=>{
+                e.reply(msg,true);
+            };
         case 'gocq':
             return (msg)=>{
                 const d = {
