@@ -7,10 +7,10 @@ class Client{
     platform;
     online = false;
     client;
-    constructor(qid,platform,log_level){
+    constructor(qid,platform,log_level,cust_dir=null){
         this.qq = qid;
         this.platform = platform;
-        this.client = createClient(qid,{platform,data_dir:`./plugins/sparkbridge/data/`,log_level});
+        this.client = createClient(qid,{platform,data_dir: cust_dir == null ? `./plugins/sparkbridge/data/`:cust_dir,log_level});
     }
     login(pwd=null){
         this.client.on("system.login.qrcode", function (e) {
