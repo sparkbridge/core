@@ -9,6 +9,7 @@ class GroupMessageEvent {
         this.group = Group(type,e);
         this.raw_message = Raw_Message(type,e);
         this.reply = Group_Reply(type,e,_adapter);
+        this.message_id = e.message_id;
     }
 }
 
@@ -20,6 +21,7 @@ class FriendMessageEvent{
         this.message = Message(type,e.message);
         this.sender = Sender(type,e);
         this.raw_message = Raw_Message(type,e);
+        this.message_id = e.message_id;
     }
 }
 
