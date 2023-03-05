@@ -5,8 +5,7 @@ const fs = require('fs');
 const { segment } = require("oicq")
 const winston = require('winston');
 const dayjs = require('dayjs');
-const  exists = fs.existsSync;
-const { readFileSync } = require('fs')
+const { readFileSync, existsSync: exists } = require('fs')
 const { GroupMessageEvent, FriendMessageEvent, GroupLeftEvent, GroupJoinEvent } = require("./msgBuilder");
 let today = dayjs();
 class Adapter {
