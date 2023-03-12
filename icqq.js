@@ -1,4 +1,4 @@
-const {createClient} = require('oicq');
+const {createClient} = require('icqq');
 const crypto = require('crypto');
 const md5 = crypto.createHash('md5');
 
@@ -20,7 +20,7 @@ class Client{
             })
         })
         if(pwd){
-            this.client.passwordLogin(Buffer.from(md5.update(pwd).digest('hex')));
+            this.client.passwordLogin(this.qq,Buffer.from(md5.update(pwd).digest('hex')));
         }else{
             this.client.qrcodeLogin();
         }

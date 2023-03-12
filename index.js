@@ -1,5 +1,5 @@
 const EventEmitter = require("events");
-const cl_oicq = require('./oicq').Client;
+const cl_oicq = require('./icqq').Client;
 const cl_gocq = require('./go-cqhttp').Client;
 const fs = require('fs');
 const { segment } = require("oicq")

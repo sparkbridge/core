@@ -4,7 +4,7 @@
   "version": "1.0.6",
   "dependencies": {
     "dayjs": "^1.11.7",
-    "oicq": "^2.3.1",
+    "icqq": "^0.0.29",
     "winston": "^3.8.2",
     "ws": "^8.12.0"
   },

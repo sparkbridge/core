@@ -20,8 +20,8 @@ class Adapter{
      * @param type 适配器种类，可选oicq/gocq
      * @param qq QQ号
      * @param platform 平台协议 1：手机，2：平板，3：手表 
-     * @param log_level 日志等级，仅对oicq客户端生效
-     * @param target go-cqhttp远程地址，在oicq模式下被忽略
+     * @param log_level 日志等级，仅对icqq客户端生效
+     * @param target go-cqhttp远程地址，在icqq模式下被忽略
      * @param log_file_path 日志地址，填null将使用默认地址`plugins/sparkbridge/logs/YYYY-MM-DD.log`
      */
     constructor(type:string,qq:number,platform:string,log_level:string,target:string,log_file_path:string|null);
