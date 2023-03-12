@@ -1,7 +1,7 @@
 {
   "name": "sparkbridge-core",
   "author": "sbaoor (https://github.com/sbaoor-fly)",
-  "version": "1.0.6",
+  "version": "1.0.6-1",
   "dependencies": {
     "dayjs": "^1.11.7",
     "icqq": "^0.0.29",
