@@ -1,36 +1,57 @@
-const {createClient} = require('icqq');
+const { createClient } = require('icqq');
 const crypto = require('crypto');
 const md5 = crypto.createHash('md5');
 
-class Client{
-    qq;
-    platform;
-    online = false;
-    client;
-    constructor(qid,platform,log_level,cust_dir=null){
-        this.qq = qid;
-        this.platform = platform;
-        this.client = createClient(qid,{platform,data_dir: cust_dir == null ? `./plugins/sparkbridge/data/`:cust_dir,log_level});
-    }
-    login(pwd=null){
-        this.client.on("system.login.qrcode", function (e) {
-            //扫码后按回车登录
-            process.stdin.once("data", () => {
-                this.login()
-            })
+class Client {
+  qq;
+  platform;
+  online = false;
+  client;
+  constructor(qid, platform, log_level, cust_dir = null) {
+    this.qq = qid;
+    this.platform = platform;
+    this.client = createClient({ data_dir: cust_dir == null ? `./plugins/sparkbridge/data/` + this.qq : cust_dir, log_level });
+  }
+  login(pwd) {
+    this.client.on("system.login.qrcode", function (e) {
+      //扫码后按回车登录
+      process.stdin.once('data', () => {
+        this.login()
+      })
+    })
+
+    if (global.spark == undefined) { // 本地测试环境
+      this.client.on('system.login.slider', (e) => {
+        console.log('输入滑块地址获取的ticket后继续。\n滑块地址:    ' + e.url)
+        process.stdin.once('data', (data) => {
+          this.client.submitSlider(data.toString().trim())
         })
-        if(pwd){
-            this.client.passwordLogin(this.qq,Buffer.from(md5.update(pwd).digest('hex')));
-        }else{
-            this.client.qrcodeLogin();
-        }
+      })
+      this.client.on('system.login.device', (e) => {
+        this.client.sendSmsCode()
+        console.log('请输入手机收到的短信验证码:');
+        process.stdin.once('data', (res) => {
+          this.client.submitSmsCode(res.toString().trim())
+        })
+      })
+    } else {
+      this.client.on('system.login.device', (e) => {
+        this.client.sendSmsCode();
+      })
     }
-    on(evt,func){
-        return this.client.on(evt,func);
-    }
-    off(evt,func){
-        return this.client.off(evt,func);
-    }
+    this.client.login(this.qq, pwd);
+   // if (pwd) {
+     
+   // } else {
+    //  this.client.login(this.qq);
+    //}
+  }
+  on(evt, func) {
+    return this.client.on(evt, func);
+  }
+  off(evt, func) {
+    return this.client.off(evt, func);
+  }
 }
 /*
 GroupMessage {
@@ -123,4 +144,4 @@ PrivateMessage {
  */
 
 
-module.exports = {Client};
+module.exports = { Client };

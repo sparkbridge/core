@@ -46,7 +46,7 @@ class Adapter {
                 throw new Error('此类型还未适配');
         }
     }
-    login(pwd = null) {
+    login(pwd) {
         this.pwd = pwd;
         this.client.login(pwd);
         switch (this.type) {
