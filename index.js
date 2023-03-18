@@ -5,7 +5,7 @@ const fs = require('fs');
 const { segment } = require("icqq")
 const winston = require('winston');
 const dayjs = require('dayjs');
-const  exists = fs.existsSync;
+const { readFileSync, existsSync: exists } = require('fs')
 const { GroupMessageEvent, FriendMessageEvent, GroupLeftEvent, GroupJoinEvent } = require("./msgBuilder");
 let today = dayjs();
 class Adapter {
@@ -209,13 +209,9 @@ class Adapter {
             case 'oicq':
                 return segment.image(file);
             case 'gocq':
-                if(exists(file)){
-                    return { type: 'image', data: { file:'file:///'+file } }
-                }else{
-                    return { type: 'image', data: { file:file, subType:0} }
-                    // 暂时只能使用file进行发送
-                    // 详见https://github.com/Mrs4s/go-cqhttp/issues/1660
-                }
+                if (typeof file === 'string' && exists(file)) file = readFileSync(file)
+                if (file instanceof Buffer) file = `base64://${file.toString('base64')}`
+                return { type: 'image', data: { file: file, subType: 0 } }
         }
     }
     at(qid) {
