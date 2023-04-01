@@ -22,6 +22,7 @@ class FriendMessageEvent{
         this.sender = Sender(type,e);
         this.raw_message = Raw_Message(type,e);
         this.message_id = e.message_id;
+        this.user = e.user_id;
     }
 }
 
